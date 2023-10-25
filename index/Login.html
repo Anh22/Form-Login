@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="title">Login</div>
+    <form action="#" id="login-form" >
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Username</span>
+                <input type="text" name="username" id="login-username" placeholder="Enter your username" required>
+            </div>
+        </div>
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Password</span>
+                <input type="password" name="password" id="login-password" placeholder="Enter your password" required>
+            </div>
+        </div>
+        <div class="link"><a href="#">Forgot password</a> <a href="http://localhost:63342/CASE-Login/Regiger/Resiger.html?_ijt=gf65j6rh1re2aakj9pfnv0s7ub&_ij_reload=RELOAD_ON_SAVE">Register</a> </div>
+        <div class="button">
+            <input type="submit" value="Login" />
+        </div>
+    </form>
+    <div id="loginError" class="error"></div>
+    <p>Don't have an account? <a href='http://localhost:63342/CASE-Login/Regiger/Resiger.html?_ijt=u7kcb6hau6nsq6uu0tf3t3bfat&_ij_reload=RELOAD_ON_SAVE'>Register here</a></p>
+    <script >const loginform = document.getElementById("login-form");
+    const loginUsername = document.getElementById("login-username");
+    const loginPassword = document.getElementById("login-password");
+    const loginError = document.getElementById("loginError");
+
+    loginform.addEventListener("submit",function(e){
+        e.preventDefault();
+        const username = loginUsername.value;
+        const password = loginPassword.value;
+
+        const userData = JSON.parse(localStorage.getItem(username,password));
+
+
+        if(!userData || userData.password !== password){
+
+            loginError.textContent = "Sai tên đăng nhập hoặc mật khẩu";
+        }else{
+            alert("Đăng nhập thành công")
+            window.location.href = "http://localhost:63342/CASE-Login/Home/Home.html?_ijt=qpt5voigbpb6on7vossjemcuca&_ij_reload=RELOAD_ON_SAVE";
+        }
+    });
+    </script>
+</div>
+</div>
+
+</body>
+</html>

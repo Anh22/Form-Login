@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+<div class="container">
+    <div class="title">Registration</div>
+    <form action="#" id="register-form">
+        <div class="user-details">
+            <div class="input-box">
+                <span class="details">Fullname: </span>
+                <input
+                        type="text"
+                        name="fullname"
+                        id="register-fullname"
+                        placeholder="Enter your name"
+
+                />
+            </div>
+            <div class="input-box">
+                <span class="details">Username: </span>
+                <input
+                        type="text"
+                        name="username"
+                        id="register-username"
+                        placeholder="Enter your name"
+
+                />
+            </div>
+            <div class="input-box">
+                <span class="details">Email: </span>
+                <input
+                        type="email"
+                        name="email"
+                        id="register-email"
+                        placeholder="Enter your Email"
+
+                />
+            </div>
+            <div class="input-box">
+                <span class="details">Phone Number: </span>
+                <input
+                        type="text"
+                        name="phone"
+                        id="phone"
+                        placeholder="Enter your number"
+
+                />
+            </div>
+            <div class="input-box">
+                <span class="details">Password: </span>
+                <input
+                        type="password"
+                        name="password"
+                        id="register-password"
+                        placeholder="Enter your password"
+
+                />
+            </div>
+            <div class="input-box">
+                <span class="details">Confirm Password: </span>
+                <input
+                        type="password"
+                        name="confirmpassword"
+                        id="register-respassword"
+                        placeholder="Confirm your password"
+
+                />
+            </div>
+        </div>
+        <div class="gender-details">
+            <input type="radio" name="gender" id="dot-1" />
+            <input type="radio" name="gender" id="dot-2" />
+            <input type="radio" name="gender" id="dot-3" />
+            <span class="gender-titile">Gender</span>
+            <div class="category">
+                <label for="dot-1">
+                    <span class="dot one"></span>
+                    <span class="gender">Male</span>
+                </label>
+                <label for="dot-2">
+                    <span class="dot two"></span>
+                    <span class="gender">Female</span>
+                </label>
+                <label for="dot-3">
+                    <span class="dot three"></span>
+                    <span class="gender">Prefer not to say</span>
+                </label>
+            </div>
+        </div>
+        <div class="button">
+            <input type="submit" value="Register"/>
+        </div>
+    </form>
+    <div id="registerError" class="error"></div>
+
+    <p>Already have an account? <a href="http://localhost:63342/CASE-Login/index/Login.html?_ijt=uufqi3l7ov6rpgsh9reu1oa62l&_ij_reload=RELOAD_ON_SAVE">Login here</a></p>
+    <script>
+
+        const registerForm =  document.getElementById("register-form");
+        const registerFullname = document.getElementById("register-fullname");
+        const registerUsername = document.getElementById("register-username");
+        const registerPassword = document.getElementById("register-password");
+        const registerComfirmPassword = document.getElementById("register-respassword");
+        const registerError = document.getElementById("registerError");
+        const registerEmail = document.getElementById("register-email")
+        const registerPhone = document.getElementById("phone");
+
+        registerForm.addEventListener("submit",function(e){
+            e.preventDefault();
+            const fullname = registerFullname.value;
+            const username = registerUsername.value;
+            const email = registerEmail.value;
+            const phone = registerPhone.value;
+            const password = registerPassword.value;
+            const comfirmpassword = registerComfirmPassword.value;
+
+
+
+            if(username.trim() === "" || fullname.trim() ==="" || email.trim() === "" || password.trim() === "" ||  comfirmpassword.trim() === "" || phone.trim()===""){
+                registerError.textContent = "Vui lòng điền đủ thông tin";
+
+            }else  if (password.length < 6) {
+                registerError.textContent = 'Mật khẩu phải có ít nhất 6 ký tự.';
+                return false;
+            } else if(password !== comfirmpassword){
+                registerError.textContent = "Mật khẩu và các nhận mật khẩu không trùng khớp"
+            }else{
+                registerError.textContent ="Bạn đăng ký thành công"
+                registerForm.reset();
+                const userData = {
+                    fullname,
+                    username,
+                    email,
+                    phone,
+                    password,
+                    comfirmpassword
+
+                };
+                localStorage.setItem(username,JSON.stringify(userData));
+                registerForm.reset()
+                alert('Bạn đăng ký thành công!')
+                window.location.href = "";
+
+                return;
+            }
+
+        });
+
+    </script>
+</div>
+</div>
+</body>
+</html>

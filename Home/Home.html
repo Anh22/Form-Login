@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="mec.css">
+</head>
+<body>
+<div class="wapper">
+    <div class="titi">
+    <h2 style="color: wheat">Thêm người dùng </h2>
+    <label>ID</label>
+    <input type="number" id="id" />
+    </div>
+    <div >
+    <label >Name</label>
+    <input type="text" id="name" />
+    </div>
+    <div>
+    <label>Since</label>
+    <input type="number" id="age" />
+    </div>
+
+    <button onclick="add()">ADD List</button>
+    <table class="table" id="renger">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Since</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+
+
+<script>
+    let data = [];
+    let editIndex = null
+    function add() {
+        // document tra ve id duoc cung cap
+        var item_id = document.getElementById("id").value;
+        var item_name = document.getElementById("name").value;
+        var item_age = document.getElementById("age").value;
+
+        var item = {
+            Id: item_id,
+            Name: item_name,
+            Since: item_age,
+        };
+        if (editIndex!==null){
+            data[editIndex]=item;
+            editIndex = null
+        }
+            else{
+                data.push(item);
+            }
+        renger();
+        clear();
+
+    }
+    function renger() {
+        table = `<tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Since</th>
+                <th>Action</th>
+
+            </tr>`;
+        for (let i = 0; i < data.length; i++) {
+            table += `<tr>
+                <th>${data[i].Id}</th>
+                <th>${data[i].Name}</th>
+                <th>${data[i].Since}</th>
+                <th><button onclick= "deleteItem(${data[i].Id})">Delete<button>
+                <button onclick= "editItem(${data[i].Id})">Edit<button></th>
+
+
+
+
+            </tr>`;
+            document.getElementById("renger").innerHTML = table;
+        }
+    }
+
+    function clear() {
+        document.getElementById("id").value = "";
+        document.getElementById("name").value = "";
+        document.getElementById("age").value = "";
+    }
+
+    function deleteItem(x) {
+        for (i = 0; i <= data.length; i++) {
+            if (data[i].Id == x) {
+                data.splice(i, 1);
+                renger();
+            }
+        }
+    }
+
+    function editItem(x) {
+        for (i = 0; i <= data.length; i++) {
+            if (data[i].Id == x) {
+                document.getElementById("id").value = data[i].Id;
+                document.getElementById("name").value = data[i].Name;
+                document.getElementById("age").value = data[i].Since;
+            }
+        }
+
+    }
+
+</script>
+
+</body>
+</html>
