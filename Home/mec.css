@@ -66,12 +66,14 @@ input {
 
 button {
     /*margin-block-start: 29px;*/
-    padding: 10px 20px;
-    font-size: 16px;
-    border: none;
-    background-color:#9b59b6;
-    color: #fff;
-    cursor: pointer;
+    outline: none;
+    color: #ffff;
+    background: linear-gradient(135deg,#71b7e6,#9b59b6);
+    border-radius: 20px;
+    font-size: 25px;
+    font-weight: 500;
+    letter-spacing: 2px;    padding: 23px;
+
 }
 
 button:hover {
@@ -98,16 +100,13 @@ button:hover {
     padding: 10px;
     text-align: center;
 }
-
 .table th {
     background-color:#9b59b6;
     color: #fff;
 }
-
 .table th:last-child, .table td:last-child {
     white-space: nowrap;
 }
-
 .table button {
     margin-right: 5px;
 }
